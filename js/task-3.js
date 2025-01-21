@@ -1,29 +1,15 @@
-class StringBuilder {
-  #value;
-  constructor(initialValue){
-    this.#value = initialValue;
-  }
+const userName = document.querySelector('#name-input');
+const spanName = document.querySelector('#name-output');
+const spanTextOrig = spanName.textContent;
 
-  getValue(){
-    return this.#value;
-  }
- 
-  padStart(str){
-    this.#value = `${str}${this.#value}`;
-  }
-  padEnd(str){
-    this.#value = `${this.#value}${str}`;
-  }
-  padBoth(str){this.#value =`${str}${this.#value}${str}`;}
+function onInputChange() {
+    const stateText = userName.value.trim();
+    if (stateText === '') {
+        spanName.textContent = spanTextOrig;
+    } else {
+        spanName.textContent = `${userName.value}`;
+    }
 }
 
+userName.addEventListener('input',onInputChange)
 
-
-const builder = new StringBuilder(".");
-console.log(builder.getValue()); // "."
-builder.padStart("^");
-console.log(builder.getValue()); // "^."
-builder.padEnd("^");
-console.log(builder.getValue()); // "^.^"
-builder.padBoth("=");
-console.log(builder.getValue()); // "=^.^="
